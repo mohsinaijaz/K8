@@ -14,10 +14,9 @@ Kops will create the following in your AWS account, make sure to delete the clus
 #
 
 Install kubectl to interact with the cluster
-Using Brew : brew install kubernetes-cli
-Using Curl : curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
-
- If used curl add kubectl to PATH  
+$ brew install kubernetes-cli
+or
+$ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
 
 $ aws configure
 AWS Access Key ID [None]: Access_key
