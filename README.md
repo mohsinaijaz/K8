@@ -31,9 +31,9 @@ $ export KOPS_STATE_STORE=s3://<****same as bucket name***>
 
 **Feel free to remove or change anything in the create command to fit your needs.**
 
-The below commands will create a cluster configuration with in AWS with t2.small instances (Use any of the 3 command below to create)
+The below commands will create a cluster configuration with in AWS with t2 instances (Use any of the 3 command below to create)
 
-$ kops create cluster --node-count=4 --node-size=t2.small --cloud=aws --zones=eu-central-1a --name=<*****nameyoucluster****.k8s.local> --cloud=aws -----cloud-labels="Stack=Prod,ApplicationName=Frontend"
+$ kops create cluster --node-count=4 --node-size=t2.medium --cloud=aws --zones=us-east-1a --name=<*****nameyoucluster****.k8s.local> --cloud=aws --cloud-labels="Stack=Test,Application=Frontend"
 
 $ kops create cluster --name=<*****nameyoucluster****.k8s.local> --state=s3://<****same-bucket-name***> --zones=us-east-1a --node-count=2 --networking weave --topology private --bastion="true"
 
@@ -42,6 +42,8 @@ $ kops create cluster --node-count=2 --node-size=t2.medium --zones=us-east-1a
 **We can then spin up our cluster using:**
 
 $ kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
+
+$ kops update cluster --name=<*****nameyoucluster****.k8s.local> --yes --state=s3://<****same-bucket-name***>
 
 $ kops validate cluster
 
