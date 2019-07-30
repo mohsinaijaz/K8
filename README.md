@@ -13,15 +13,11 @@ Kops will create the following in your AWS account, make sure to delete the clus
 
 #
 
-Install kubectl to interact with the cluster
-
-$ brew install kubernetes-cli
-
-$ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
-
-#Setup aws cli to interact with aws account
+Setup aws cli to interact with aws account
 
 $ aws configure
+
+Install kops and kubectl interact with the cluster
 
 $ brew update && brew install kops kubectl
 
