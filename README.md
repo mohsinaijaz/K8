@@ -19,11 +19,9 @@ $ brew install kubernetes-cli
 
 $ curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/darwin/amd64/kubectl
 
+#Setup aws cli to interact with aws account
+
 $ aws configure
-AWS Access Key ID [None]: Access_key
-AWS Secret Access Key [None]: Secret_key
-Default region name [None]: us-east-1
-Default output format [None]:
 
 $ brew update && brew install kops kubectl
 
