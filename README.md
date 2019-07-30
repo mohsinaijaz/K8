@@ -1,5 +1,3 @@
-# K8
-
 Here are the steps to install Kubernetes cluster using Kops in AWS.
 
 link to kops https://github.com/kubernetes/kops
@@ -13,10 +11,6 @@ User who will create the cluster must have the following IAM permissions:
 
 Kops will create the following in your AWS account, make sure to delete the cluster to avoid charges.
 
-#
-#
-#
-#
 #
 
 Install kubectl to interact with the cluster
@@ -51,7 +45,7 @@ $ kops create cluster --name=<*****nameyoucluster****.k8s.local> --state=s3://<*
 
 $ kops create cluster --node-count=2 --node-size=t2.medium --zones=us-east-1a
 
-*We can then spin up our cluster using:*
+**We can then spin up our cluster using:**
 
 $ kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
 
