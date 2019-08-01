@@ -39,6 +39,10 @@ $ kops create cluster --name=<*****nameyoucluster****.k8s.local> --state=s3://<*
 
 $ kops create cluster --node-count=2 --node-size=t2.medium --zones=us-east-1a
 
+$ kops create cluster --name=mohsin.k8s.local --state=s3://mohsin-kops-state-bucket --zones=us-east-1a --node-count=2 --node-size=t2.medium --networking=weave --cloud=aws --cloud-labels="Stack=Test,App=web"
+
+$ kops create cluster --cloud=aws --zones=us-east-1a --name=jenkins.k8.princedreamcars.com --dns-zone=k8.princedreamcars.com --dns public --state=s3://jenkins-k8-princedreamcars-com-state-store
+
 **We can then spin up our cluster using:**
 
 $ kops update cluster --name ${KOPS_CLUSTER_NAME} --yes
