@@ -27,36 +27,50 @@ $ dig ns k8.princedreamcars.com
 
 Create bucket with the change the name of the bucket
 
-$ aws s3api create-bucket --bucket jenkins-k8-princedreamcars-com-state-store --region us-east-1
+$ aws s3api create-bucket --bucket k8-princedreamcars-com-state-store --region us-east-1
 
-$ aws s3api put-bucket-versioning --bucket jenkins-k8-princedreamcars-com-state-store  --versioning-configuration Status=Enabled
+$ aws s3api put-bucket-versioning --bucket k8-princedreamcars-com-state-store  --versioning-configuration Status=Enabled
 
-$ export NAME=k8.princedreamcars.com
+$ export KOPS_CLUSTER_NAME=k8.princedreamcars.com
 
-$ export KOPS_STATE_STORE=s3://jenkins-k8-princedreamcars-com-state-store
+$ export KOPS_STATE_STORE=s3://k8-princedreamcars-com-state-store
 
-**We can then spin up our cluster using:**
+**Options for the Kops create command**
 
-$ kops create cluster --cloud=aws --zones=us-east-1a --name=jenkins.k8.princedreamcars.com --dns-zone=k8.princedreamcars.com --dns=public --state=s3://jenkins-k8-princedreamcars-com-state-store --cloud-labels="Stack=Test,App=web"
+--master-size=
 
-$ kops update cluster ${NAME} --yes
+--master-count=
+
+--node-size=
+
+--node-count=
+
+--cloud=
+
+--zones=
+
+--cloud-labels=
+
+--bastion=
+
+--topology=
+
+--networking=
+
+--state=
+
+--dns-zone=
+
+--dns=
+
+**We create the cluster using the command below:**
+
+$ kops create cluster --cloud=aws --zones=us-east-1a name=${KOPS_CLUSTER_NAME} --dns-zone=k8.princedreamcars.com --dns=public --networking=weave --cloud-labels="Stack=Test,App=web"
+
+$ kops update cluster $KOPS_CLUSTER_NAME} --yes
 
 $ kops validate cluster
 
 $ kubectl get nodes --show-lables
 
 $ kops delete cluster --name ${KOPS_CLUSTER_NAME} --yes
-
-
-
-
-__________________________________________________________________________________________________________________________
-$ kops create cluster --node-count=4 --node-size=t2.medium --cloud=aws --zones=us-east-1a --name=<*****nameyoucluster****.k8s.local> --cloud=aws --cloud-labels="Stack=Test,Application=Frontend"
-
-$ kops create cluster --name=<*****nameyoucluster****.k8s.local> --state=s3://<****same-bucket-name***> --zones=us-east-1a --node-count=2 --networking weave --topology private --bastion="true"
-
-$ kops create cluster --node-count=2 --node-size=t2.medium --zones=us-east-1a
-
-$ kops create cluster --name=mohsin.k8s.local --state=s3://mohsin-kops-state-bucket --zones=us-east-1a --node-count=2 --node-size=t2.medium --networking=weave --cloud=aws --cloud-labels="Stack=Test,App=web"
-
-$ kops create cluster --cloud=aws --zones=us-east-1a --name=jenkins.k8.princedreamcars.com --dns-zone=k8.princedreamcars.com --dns public --state=s3://jenkins-k8-princedreamcars-com-state-store
